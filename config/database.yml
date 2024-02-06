@@ -21,7 +21,10 @@ test:
   database: storage/test.sqlite3
 
 production:
-  <<: *default
   adapter: postgresql
   encoding: unicode
   url: <%= ENV['DATABASE_URL'] %> 
+  username: collective_blog_database_user
+  password: <%= ENV['APPNAME_DATABASE_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
