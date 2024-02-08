@@ -44,12 +44,22 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Sentry captures data by using an SDK within your application’s runtime
+gem "sentry-ruby"
+gem "sentry-rails"
+
+# slim-lint is a tool to help keep your Slim files clean and readable. In addition to style and lint checks, it integrates with RuboCop to bring its powerful static analysis tools to your Slim templates
+gem "slim_lint"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
   
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", "~> 1.4"
+  
+  # Linter
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
@@ -68,6 +78,7 @@ end
 group :production do
   gem 'pg'
 end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
