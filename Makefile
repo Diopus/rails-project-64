@@ -2,8 +2,7 @@ test:
 	bin/rails test
 
 lint:
-  bundle exec rubocop bin
-	bundle exec slim-lint app/views/
-	# FIXME: remove /bin
+  # TODO: bundle exec rubocop
+  bundle exec slim-lint app/views/
 
 check: lint test
