@@ -32,5 +32,5 @@ jobs:
       - name: Install gems
         run: bundle install --without production development
 
-      - name: Run linter & test
+      - name: Run linter & tests
         run: make check
