@@ -5,6 +5,5 @@ exclude:
   - node_modules/*
 
 linters:
-
   LineLength:
     max: 180
