@@ -30,7 +30,7 @@ jobs:
           bundler-cache: true
 
       - name: Setup CI
-        run: ci-setup
+        run: make ci-setup
 
       - name: Run linter & tests
         run: make check
