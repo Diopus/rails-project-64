@@ -33,6 +33,8 @@ gem "sentry-rails"
 # slim-lint is a tool to help keep your Slim files clean and readable. In addition to style and lint checks, it integrates with RuboCop to bring its powerful static analysis tools to your Slim templates
 gem "slim_lint"
 
+gem "slim-rails"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -61,11 +63,11 @@ group :development, :test do
   # Library for generating fake data such as names, addresses, and phone numbers [https://github.com/faker-ruby/faker]
   gem "faker"
 
-  # Use sqlite3 as the database for Active Record
-  gem "sqlite3", "~> 1.4"
-
   # Linter
   gem 'rubocop-rails', require: false
+
+  # Use sqlite3 as the database for Active Record
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do
