@@ -1,3 +1,5 @@
-h1
-  | Home#index
-p
+= content_for :title do
+  = t('.title')
+
+- @posts.each_with_index do |post, i|
+  = post.title

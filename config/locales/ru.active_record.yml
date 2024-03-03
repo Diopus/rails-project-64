@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            category:
+              required: 'Категория не может отсутствовать'

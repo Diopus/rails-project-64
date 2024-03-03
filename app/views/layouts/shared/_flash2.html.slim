@@ -1,0 +1,13 @@
+- if flash.any?
+  .container.my-2
+    - flash.each do |type, msg|
+      - alert_class = case type
+                      when 'notice' then 'alert-primary'
+                      when 'alert' then 'alert-danger'
+                      when 'success' then 'alert-success'
+                      when 'info' then 'alert-info'
+                      when 'warning' then 'alert-warning'
+                      else 'alert-secondary'
+                      end
+      .alert class="alert #{alert_class}"
+        = msg

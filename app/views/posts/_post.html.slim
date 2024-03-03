@@ -1,10 +1,13 @@
-div id="#{dom_id post}"
-  p
-    strong Title:
-    =< post.title
-  p
-    strong Body:
-    =< post.body
-  p
-    strong Creator:
-    =< post.creator_id
+.raw.justify-content-center.mt-4
+  article.col-12
+    h1.mb-4.mb-lg-5 = post.title
+    p
+    p = post.body
+    p
+    d-flex.justify-content-between.mt-5
+      div id='post-section'
+        span.me-2 asdasd@asdasda.org
+        span 14 минутов
+.lead.mt-3
+  div id='comment-section'
+    span Комментарии

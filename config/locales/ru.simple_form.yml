@@ -1,0 +1,14 @@
+ru:
+  helpers:
+    submit:
+      post:
+        create: 'Опубликовать'
+  simple_form:
+    labels:
+      post:
+        title: 'Заголовок'
+        body: 'Содержание'
+        category: 'Категория'
+    required:
+      text: 'не может быть пустым'
+      mark: '*'

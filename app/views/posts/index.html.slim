@@ -1,11 +1,16 @@
-p style="color: green" = notice
+= content_for :title do
+  = t('.title')
 
-h1 Posts
-
-#posts
+.row
   - @posts.each do |post|
-    == render post
-    p
-      = link_to "Show this post", post
-
-= link_to "New post", new_post_path
+    .col-md-12
+      .card.mb-3
+        .card-body
+          .h5.card-title
+            = link_to post.title, post, class: "link-dark text-decoration-none"
+          .card-text.mb-2
+            = post.body
+          .text-right.small.text-muted.mt-auto
+            span.me-2 Понравилось: 0
+            span.me-2 14 минутов
+            span askldjakls@asdasdas.org

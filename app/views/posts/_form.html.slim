@@ -1,22 +1,16 @@
-= form_with(model: post) do |form|
-  - if post.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(post.errors.count, "error")} prohibited this post from being saved:"
-      ul
-        - post.errors.each do |error|
-          li = error.full_message
+= simple_form_for @post, html: { novalidate: 'novalidate' } do |f|
+  .form-group.string.required.post_title
+    = f.label :title, required: true
+    = f.input_field :title, class: 'form-control string required'
+    small.form-text.text-muted 5-255 символов
 
-  div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
+  .form-group.select.required.post_category
+    = f.label :category, required: true, class: 'mt-3'
+    = f.association :category, label: false, input_html: { class: 'form-control' }
 
-  div
-    = form.label :body, style: "display: block"
-    = form.text_area :body
+  .form-group.text.required.post_body
+    = f.label :body, required: true, class: 'mt-3'
+    = f.text_area :body, class: 'form-control text required'
+    small.form-text.text-muted От 200 до 4000 символов
 
-  div
-    = form.label :creator_id, style: "display: block"
-    = form.text_field :creator_id
-
-  div
-    = form.submit
+  = f.button :submit, class: 'btn-primary mt-3'

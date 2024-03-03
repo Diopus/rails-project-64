@@ -30,6 +30,8 @@ gem "rails", "~> 7.1.3"
 gem "sentry-ruby"
 gem "sentry-rails"
 
+gem "simple_form"
+
 # slim-lint is a tool to help keep your Slim files clean and readable. In addition to style and lint checks, it integrates with RuboCop to bring its powerful static analysis tools to your Slim templates
 gem "slim_lint"
 
