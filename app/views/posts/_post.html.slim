@@ -11,3 +11,7 @@
 .lead.mt-3
   div id='comment-section'
     span Комментарии
+    p
+    - @post.comments.each do |comment|
+      = comment.content
+      p
