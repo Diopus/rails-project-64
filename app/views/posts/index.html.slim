@@ -12,5 +12,5 @@
             = post.body
           .text-right.small.text-muted.mt-auto
             span.me-2 Понравилось: 0
-            span.me-2 14 минутов
-            span askldjakls@asdasdas.org
+            span.me-2 = time_ago_in_words(post.created_at)
+            span = post.creator.email

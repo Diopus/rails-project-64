@@ -3,6 +3,8 @@ ru:
     submit:
       post:
         create: 'Опубликовать'
+      post_comment:
+        create: 'Оставить комментарий'
   simple_form:
     labels:
       post:

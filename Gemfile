@@ -13,6 +13,8 @@ gem "cssbundling-rails"
 gem "devise", "~> 4.9"
 gem 'devise-i18n'
 
+gem 'i18n-tasks'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -27,6 +29,8 @@ gem "puma", ">= 5.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
+
+gem 'rails-i18n'
 
 # Sentry captures data by using an SDK within your application’s runtime
 gem "sentry-ruby"
