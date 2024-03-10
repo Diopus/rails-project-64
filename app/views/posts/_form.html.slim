@@ -1,16 +1,15 @@
 = simple_form_for @post, html: { novalidate: 'novalidate' } do |f|
-  .form-group.string.required.post_title
-    = f.label :title, required: true
-    = f.input_field :title, class: 'form-control string required'
-    small.form-text.text-muted 5-255 символов
+  = f.input :title,
+    required: true,
+    hint: build_field_length_hint(Post, :title)
 
-  .form-group.select.required.post_category
-    = f.label :category, required: true, class: 'mt-3'
-    = f.association :category, label: false, input_html: { class: 'form-control' }
+  = f.association :category,
+    required: true,
+    label_html: { class: 'mt-3' }
 
-  .form-group.text.required.post_body
-    = f.label :body, required: true, class: 'mt-3'
-    = f.text_area :body, class: 'form-control text required'
-    small.form-text.text-muted От 200 до 4000 символов
+  = f.input :body,
+    required: true,
+    hint: build_field_length_hint(Post, :body),
+    label_html: { class: 'mt-3' }
 
   = f.button :submit, class: 'btn-primary mt-3'

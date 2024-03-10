@@ -4,7 +4,7 @@
     p
     p = post.body
     p
-    d-flex.justify-content-between.mt-5
+    .d-flex.justify-content-between.mt-5
       div id='post-section'
         span.me-2 = post.creator.email
         span = time_ago_in_words(post.created_at)

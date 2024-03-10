@@ -1,17 +1,24 @@
 ru:
   activerecord:
+    attributes:
+      post:
+        body: 'Содержание'
+        category: 'Категория'
+        title: 'Заголовок'
+
     errors:
       models:
         post:
           attributes:
             category:
-              required: 'Категория не может отсутствовать'
+              required: 'не может отсутствовать'
         user:
           attributes:
             email:
               blank: 'не может быть пустым'
             password:
               blank: 'не может быть пустым'
+
     models:
       user:
         zero: Нет пользователей

@@ -1,4 +1,4 @@
-class PostCommentsController < ApplicationController
+class CommentsController < ApplicationController
   before_action :set_post_comment, only: %i[ show edit update destroy ]
 
   # GET /post_comments or /post_comments.json
