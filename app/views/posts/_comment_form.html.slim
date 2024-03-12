@@ -7,11 +7,11 @@
     p.card-text = comment.content
   - if user_signed_in?
     .card-footer.border-0
-      a.fs-6.text-decoration-underline.text-lowercase(href='#collapseExample' data-bs-toggle='collapse' role='button')
+      a.fs-6.text-decoration-underline.text-lowercase(href="#" data-bs-toggle='collapse' data-bs-target="#response_comment-#{comment.id}" type='button')
         = t('.add_comment')
-      .collapse(id='collapseExample')
+      .ms-2.collapse(id="response_comment-#{comment.id}")
         | iiiiiii
   .ms-4
     - comment.children.each do |comment|
       - if comment.persisted?
-        = render 'post_comments/form', comment: comment
+        = render 'comment_form', comment: comment

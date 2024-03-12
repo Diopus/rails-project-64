@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.3.0"
+
 # Ancestry is a gem that allows rails ActiveRecord models to be organized as a tree structure (or hierarchy) https://github.com/stefankroes/ancestry
 gem 'ancestry'
 

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :post_comments
-  resources :posts
-
+  resources :posts, shallow: true do
+    resources :comments, module: :posts
+  end
   devise_for :users
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

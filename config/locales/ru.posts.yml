@@ -46,3 +46,6 @@ ru:
 
       update:
         success: Комментарий успешно обновлён
+
+    comment_form:
+      add_comment: ответить
