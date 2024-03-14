@@ -1,17 +1,4 @@
-.card.mt-2.rounded-0 id="comment-#{comment.id}"
-  .card-header.border-0
-    me-2 #
-    span.me-2 = comment.creator.email
-    span.fs-6.text-muted = l(comment.created_at, format: :short)
-  .card-body.border-0
-    p.card-text = comment.content
-  - if user_signed_in?
-    .card-footer.border-0
-      a.fs-6.text-decoration-underline.text-lowercase(href="#" data-bs-toggle='collapse' data-bs-target="#response_comment-#{comment.id}" type='button')
-        = t('.add_comment')
-      .ms-2.collapse(id="response_comment-#{comment.id}")
-        | iiiiiii
-  .ms-4
-    - comment.children.each do |comment|
-      - if comment.persisted?
-        = render 'comment_form', comment: comment
+= simple_form_for comment, url: do |f|
+  .form-group.text.required.post_comment_content
+    = f.text_area :content, class: 'form-control text required'
+  = f.submit class: 'btn btn-primary mt-2'

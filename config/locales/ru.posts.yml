@@ -33,7 +33,9 @@ ru:
     update:
       success: Пост успешно обновлён
     # END
-
+    
+    comment:
+      add_comment: ответить
     comments:
       destroy:
         success: Комментарий успешно удалён

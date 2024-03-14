@@ -13,11 +13,9 @@
   div id='comment-section'
     span Комментарии
 
-    = simple_form_for @post.comments.build, url: post_comments_path(@post) do |f|
-      .form-group.text.required.post_comment_content
-        = f.text_area :content, class: 'form-control text required'
-      = f.submit class: 'btn btn-primary mt-2'
+    - if user_signed_in?
+      = render 'comment_form', comment: post.comments.build, url: post_comments_path(@post)
 
     - post.comments.roots.each do |comment|
       - if comment.persisted?
-        = render 'comment_form', comment: comment
+        = render 'comment', comment: comment

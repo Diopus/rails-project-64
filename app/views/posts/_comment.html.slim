@@ -1,0 +1,19 @@
+.card.mt-2.rounded-0 id="comment-#{comment.id}"
+  .card-header.border-0
+    me-2 #
+    span.me-2 = comment.creator.email
+    span.fs-6.text-muted = l(comment.created_at, format: :short)
+  .card-body.border-0
+    p.card-text = comment.content
+
+  - if user_signed_in?
+    .card-footer.border-0
+      a.fs-6.text-decoration-underline.text-lowercase(href="#" data-bs-toggle='collapse' data-bs-target="#response_comment-#{comment.id}" type='button')
+        = t('.add_comment')
+      .ms-2.collapse(id="response_comment-#{comment.id}")
+        = render 'comment_form', comment: comment.post.comments.build, url: post_comments_path(comment.post)
+
+  .ms-4
+    - comment.children.each do |comment_child|
+      - if comment_child.persisted?
+        = render 'comment', comment: comment_child
