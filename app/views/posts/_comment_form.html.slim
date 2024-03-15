@@ -1,4 +1,6 @@
-= simple_form_for comment, url: do |f|
+= simple_form_for comment, url:, parent_comment: do |f|
   .form-group.text.required.post_comment_content
     = f.text_area :content, class: 'form-control text required'
+  - if parent_comment
+    = f.input :parent_id, as: :hidden, input_html: { value: "#{parent_comment.id}" }
   = f.submit class: 'btn btn-primary mt-2'

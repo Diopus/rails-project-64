@@ -11,9 +11,9 @@
       a.fs-6.text-decoration-underline.text-lowercase(href="#" data-bs-toggle='collapse' data-bs-target="#response_comment-#{comment.id}" type='button')
         = t('.add_comment')
       .ms-2.collapse(id="response_comment-#{comment.id}")
-        = render 'comment_form', comment: comment.post.comments.build, url: post_comments_path(comment.post)
+        = render 'comment_form', parent_comment: comment, comment: comment.post.comments.build, url: post_comments_path(comment.post)
 
   .ms-4
-    - comment.children.each do |comment_child|
-      - if comment_child.persisted?
-        = render 'comment', comment: comment_child
+    - comment.children.each do |child_comment|
+      - if child_comment.persisted?
+        = render 'comment', comment: child_comment
