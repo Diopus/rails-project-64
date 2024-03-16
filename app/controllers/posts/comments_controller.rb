@@ -10,14 +10,12 @@ class Posts::CommentsController < Posts::ApplicationController
 
   # POST /post_comments or /post_comments.json
   def create
-    #debugger
     post_comment = @post.comments.build(post_comment_params)
     post_comment.creator = current_user
-    #post_comment.parent = 
 
     respond_to do |format|
       if post_comment.save
-        format.html { redirect_to post_path(@post), notice: "Post comment was successfully created." }
+        format.html { redirect_to post_path(@post), notice: I18n.t('posts.comments.create.success') }
         format.json { render :show, status: :created, location: post_comment }
       else
         #format.html { render :new, status: :unprocessable_entity }
