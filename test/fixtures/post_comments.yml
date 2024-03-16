@@ -1,9 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
+root_comment:
+  content: Root comment
+  creator: one
   post: one
+  ancestry: /
 
-two:
-  content: MyText
-  post: two
+root_comment_child:
+  content: Child of the root comment
+  creator: two
+  post: one
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:root_comment) %>
+
+root_comment_child_child:
+  content: deep comment
+  creator: one
+  post: one
+  ancestry: <%= [ActiveRecord::FixtureSet.identify(:root_comment), ActiveRecord::FixtureSet.identify(:root_comment_child)].join('/') %>

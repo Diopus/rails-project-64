@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  body: MyText
+  title: Title1
+  body: "Autofilled Timestamp Columns If your table/model specifies any of Active Record’s standard timestamp columns (created_at, created_on, updated_at, updated_on), they will automatically be set to Time.now. If you’ve set specific values, they’ll be left alone."
+  category: one
   creator: one
 
 two:
-  title: MyString
-  body: MyText
+  title: Title2
+  body: "Ancestry is a gem that allows rails ActiveRecord models to be organized as a tree structure (or hierarchy). It employs the materialized path pattern which allows operations to be performed efficiently. There are a few common ways of storing hierarchical data in a database: materialized path, closure tree table, adjacency lists, nested sets, and adjacency list with recursive queries"
+  category: two
   creator: two
