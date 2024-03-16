@@ -26,13 +26,13 @@ module ApplicationHelper
         'min_length'
       end
 
-    hint_key.nil? ? nil : I18n.t("hints.length.#{hint_key}", min_length: min_length, max_length: max_length, count: max_length || min_length)
+    hint_key.nil? ? nil : I18n.t("hints.length.#{hint_key}", min_length:, max_length:, count: max_length || min_length)
   end
 
   # extracts values set for the length validator of the field
   def get_field_length_validator_value(model, field, length_validator_type)
     validators = model.validators_on(field)
     length_validator = validators.find { |v| v.is_a?(ActiveRecord::Validations::LengthValidator) }
-    length_validator&.options[length_validator_type]
+    length_validator&.options&.[](length_validator_type)
   end
 end

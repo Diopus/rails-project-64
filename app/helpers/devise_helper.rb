@@ -4,7 +4,7 @@ module DeviseHelper
   # Retain this method for backwards compatibility, deprecated in favor of modifying the
   # devise/shared/error_messages partial.
   def devise_error_messages!
-    Devise.deprecator.warn <<-DEPRECATION.strip_heredoc
+    Devise.deprecator.warn <<~DEPRECATION
       [Devise] `DeviseHelper#devise_error_messages!` is deprecated and will be
       removed in the next major version.
 
@@ -23,8 +23,8 @@ module DeviseHelper
       `rails g devise:views` which will copy all of them again to your app.
     DEPRECATION
 
-    return "" if resource.errors.empty?
+    return '' if resource.errors.empty?
 
-    render "devise/shared/error_messages", resource: resource
+    render 'devise/shared/error_messages', resource:
   end
 end
