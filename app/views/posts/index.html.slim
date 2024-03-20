@@ -10,6 +10,10 @@ h1 = t('.title')
           .card-text.mb-2
             = truncate(post.body, length: 300)
           .text-right.small.text-muted.mt-auto
-            span.me-2 Понравилось: 0
-            span.me-2 = time_ago_in_words(post.created_at)
-            span = post.creator.email
+            span.me-2
+              = t('.likes_count')
+              = ": #{post.likes.count}"
+            span.me-2
+              = time_ago_in_words(post.created_at)
+            span
+              = post.creator.email

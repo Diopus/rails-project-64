@@ -1,15 +1,12 @@
 ru:
   posts:
-    # BEGIN
+    # CRUD
     create:
       success: Пост успешно создан
-
     destroy:
       success: Пост успешно удалён
-
     edit:
       title: Заголовок
-
     index:
       comments_count_html:
         zero: нет комментариев
@@ -17,37 +14,33 @@ ru:
         few: '%{count} комментария'
         many: '%{count} комментариев'
         other: '%{count} комментариев'
-
       comments_table_title: Заголовок
+      likes_count: Понравилось
       new: Новый пост
       page_title: Посты
       title: 'Коллективный блог'
-
     new:
       title: Новый пост
-
     show:
       body: Body
       comments: Comments
-
     update:
       success: Пост успешно обновлён
-    # END
     
+    # content
     comment:
       add_comment: ответить
     comments:
       destroy:
         success: Комментарий успешно удалён
-
       edit:
         title: Изменить комментарий
-
       create:
         success: Комментарий успешно создан
-
       update:
         success: Комментарий успешно обновлён
-
+        
     comment_form:
       add_comment: ответить
+    post:
+      comments_section: Комментарии

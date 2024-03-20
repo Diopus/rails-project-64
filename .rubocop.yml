@@ -39,12 +39,6 @@ Metrics/PerceivedComplexity:
 Rails:
   Enabled: true
 
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
-
-Rails/InverseOf:
-  Enabled: false
-
 Rails/UnknownEnv:
   Environments:
     - production

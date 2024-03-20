@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts, shallow: true do
-    resources :comments, module: :posts
+  resources :posts do
+    resources :comments, module: :posts, shallow: true
+    resources :likes, module: :posts
   end
   devise_for :users
 

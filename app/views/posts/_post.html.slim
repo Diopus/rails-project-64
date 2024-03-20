@@ -6,12 +6,25 @@
     p
     .d-flex.justify-content-between.mt-5
       div id='post-section'
-        span.me-2 = post.creator.email
-        span = time_ago_in_words(post.created_at)
+        span.me-2
+          = post.creator.email
+        span
+          = time_ago_in_words(post.created_at)
+      div id='likes-section'
+        span.me-2
+          = post.likes.count
+        - like = post.likes.find_by(user: current_user)
+        - if like
+          = link_to post_like_path(post, like), data: { turbo_method: 'delete' }, class: 'text-decoration-none' do
+            span.bi.bi-hand-thumbs-up-fill.text-secondary
+        - else
+          = link_to post_likes_path(post), data: { turbo_method: 'post' }, class: 'text-decoration-none' do
+            span.bi.bi-hand-thumbs-up.text-secondary
 
 .lead.mt-3
   div id='comment-section'
-    span Комментарии
+    span
+      = t('.comments_section')
 
     - if user_signed_in?
       = render 'comment_form', parent_comment: nil, comment: post.comments.build, url: post_comments_path(@post)
