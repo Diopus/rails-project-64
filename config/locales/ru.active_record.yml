@@ -2,22 +2,24 @@ ru:
   activerecord:
     attributes:
       post:
-        body: 'Содержание'
-        category: 'Категория'
-        title: 'Заголовок'
+        body: Содержание
+        category: Категория
+        title: Заголовок
+      post_comment:
+        content: Тело комментария
 
     errors:
       models:
         post:
           attributes:
             category:
-              required: 'не может отсутствовать'
+              required: не может отсутствовать
         user:
           attributes:
             email:
-              blank: 'не может быть пустым'
+              blank: не может быть пустым
             password:
-              blank: 'не может быть пустым'
+              blank: не может быть пустым
 
     models:
       user:

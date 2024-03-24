@@ -6,4 +6,4 @@ one:
 
 two:
   post: two
-  user: two
+  user: one
