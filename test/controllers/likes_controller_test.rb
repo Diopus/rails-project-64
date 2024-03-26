@@ -12,7 +12,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     like = post.likes.find_by user: @user
-    
+
     assert { like }
   end
 
