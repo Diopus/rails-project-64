@@ -73,3 +73,7 @@ Style/HashEachMethods:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'db/seeds.rb'
