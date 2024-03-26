@@ -7,7 +7,48 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require_relative 'seeds_helper'
 
+include ApplicationHelper
+include SeedsHelper
+
+# Categories
 %w[Клавиши Двери Лужи].each do |category_name|
   Category.find_or_create_by!(name: category_name)
+end
+
+# Users
+User.create!(
+  email: 'pochta@pochta.com',
+  password: '123456'
+)
+
+5.times do
+  User.create!(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password
+  )
+end
+
+# Posts
+@post_title_max_len = ApplicationHelper.get_field_length_validator_value(Post, :title, :maximum)
+@post_title_min_len = ApplicationHelper.get_field_length_validator_value(Post, :title, :minimum)
+@post_body_max_len = ApplicationHelper.get_field_length_validator_value(Post, :body, :maximum)
+@post_body_min_len = ApplicationHelper.get_field_length_validator_value(Post, :body, :minimum)
+
+users = User.all
+users.each do |user|
+  rand(0..2).times do
+    user.posts.create!(
+      title: Faker::Lorem.paragraph_by_chars(number: rand(@post_title_min_len..@post_title_max_len)),
+      body: Faker::Lorem.paragraph_by_chars(number: rand(@post_body_min_len..@post_body_max_len)),
+      category: Category.all.sample
+    )
+  end
+end
+
+# Comments
+posts = Post.all
+posts.each do |post|
+  create_comment_replies(post, users, 5)
 end
