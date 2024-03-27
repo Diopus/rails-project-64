@@ -3,7 +3,7 @@ module SeedsHelper
     rand(0..max_replies).times do
       child_comment = post.comments.create!(
         content: Faker::Lorem.sentence,
-        creator: users.sample,
+        user: users.sample,
         parent: parent_comment
       )
 
