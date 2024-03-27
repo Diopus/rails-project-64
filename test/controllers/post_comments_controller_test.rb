@@ -10,7 +10,12 @@ class PostCommentsControllerTest < ActionDispatch::IntegrationTest
 
   test '#create root comment' do
     assert_difference('PostComment.count') do
-      post post_comments_path(@root_comment.post), params: { post_comment: { content: @root_comment.content, post_id: @root_comment.post.id, creator_id: @user.id } }
+      comment_params = { post_comment: {
+        content: @root_comment.content,
+        post_id: @root_comment.post.id,
+        user_id: @user.id
+      } }
+      post post_comments_path(@root_comment.post), params: comment_params
     end
 
     assert_redirected_to post_path(@root_comment.post)
@@ -18,7 +23,13 @@ class PostCommentsControllerTest < ActionDispatch::IntegrationTest
 
   test '#create child fot root comment' do
     assert_difference('PostComment.count') do
-      post post_comments_path(@root_comment.post), params: { post_comment: { content: @root_comment_child.content, post_id: @root_comment_child.post.id, parent: @root_comment } }
+      comment_params = { post_comment: {
+        content: @root_comment_child.content,
+        post_id: @root_comment_child.post.id,
+        parent: @root_comment,
+        user_id: @user.id
+      } }
+      post post_comments_path(@root_comment.post), params: comment_params
     end
 
     assert_redirected_to post_path(@root_comment.post)

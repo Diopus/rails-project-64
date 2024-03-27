@@ -1,7 +1,7 @@
 class Posts::CommentsController < Posts::ApplicationController
   def create
     @post_comment = resource_post.comments.build(post_comment_params)
-    @post_comment.creator = current_user
+    @post_comment.user = current_user
 
     respond_to do |format|
       if @post_comment.save

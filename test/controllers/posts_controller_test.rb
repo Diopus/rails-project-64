@@ -20,7 +20,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test '#create' do
     assert_difference('Post.count') do
-      post posts_path, params: { post: { body: @post.body, category_id: @category.id, creator_id: @user.id, title: @post.title } }
+      post_params = { post: {
+        body: @post.body,
+        category_id: @category.id,
+        creator_id: @user.id,
+        title: @post.title
+      } }
+      post posts_path, params: post_params
     end
 
     assert_redirected_to post_path(Post.last)

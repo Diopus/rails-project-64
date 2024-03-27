@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_195501) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_27_185221) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -22,11 +22,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_195501) do
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "creator_id", null: false
+    t.integer "user_id", null: false
     t.string "ancestry", null: false
     t.index ["ancestry"], name: "index_post_comments_on_ancestry"
-    t.index ["creator_id"], name: "index_post_comments_on_creator_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
+    t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
 
   create_table "post_likes", force: :cascade do |t|
@@ -64,7 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_195501) do
   end
 
   add_foreign_key "post_comments", "posts"
-  add_foreign_key "post_comments", "users", column: "creator_id"
+  add_foreign_key "post_comments", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
   add_foreign_key "posts", "categories"
