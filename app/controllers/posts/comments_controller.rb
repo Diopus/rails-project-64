@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Posts::CommentsController < Posts::ApplicationController
   def create
     @post_comment = resource_post.comments.build(post_comment_params)

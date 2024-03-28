@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostLike < ApplicationRecord
   validates :post, uniqueness: { scope: %i[user] }
 

@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 module FieldLengthHelper
+  module_function
+
   extend ActiveSupport::Concern
 
   # extracts values set for the length validator of the field

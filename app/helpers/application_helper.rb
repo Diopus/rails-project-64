@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include FieldLengthHelper
 
@@ -19,15 +21,18 @@ module ApplicationHelper
 
     return nil if max_length.nil? && min_length.nil?
 
-    hint_key =
-      if min_length && max_length
-        'min_max_length'
-      elsif max_length
-        'max_length'
-      elsif min_length
-        'min_length'
-      end
+    hint_key = determine_hint_key(min_length, max_length)
 
     hint_key.nil? ? nil : I18n.t("hints.length.#{hint_key}", min_length:, max_length:, count: max_length || min_length)
+  end
+
+  def determine_hint_key(min_length, max_length)
+    if min_length && max_length
+      'min_max_length'
+    elsif max_length
+      'max_length'
+    elsif min_length
+      'min_length'
+    end
   end
 end

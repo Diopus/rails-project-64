@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Posts::LikesController < Posts::ApplicationController
   def create
     @like = resource_post.likes.create(post: resource_post, user: current_user)
@@ -8,7 +10,7 @@ class Posts::LikesController < Posts::ApplicationController
 
   def destroy
     like = resource_post.likes.find_by(user: current_user)
-    like.destroy! if like
+    like&.destroy!
     # [TODO] message?..
 
     redirect_to resource_post

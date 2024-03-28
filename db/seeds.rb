@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -7,10 +9,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require_relative '../app/models/concerns/field_length_helper'
 require_relative 'seeds_helper'
-
-include ApplicationHelper
-include SeedsHelper
 
 # Categories
 %w[Клавиши Двери Лужи].each do |category_name|
@@ -18,10 +18,9 @@ include SeedsHelper
 end
 
 # Users
-User.create!(
-  email: 'pochta@pochta.com',
-  password: '123456'
-)
+User.find_or_create_by(email: 'pochta@pochta.com') do |user|
+  user.password = '123456'
+end
 
 5.times do
   User.create!(
@@ -31,10 +30,10 @@ User.create!(
 end
 
 # Posts
-@post_title_max_len = ApplicationHelper.get_field_length_validator_value(Post, :title, :maximum)
-@post_title_min_len = ApplicationHelper.get_field_length_validator_value(Post, :title, :minimum)
-@post_body_max_len = ApplicationHelper.get_field_length_validator_value(Post, :body, :maximum)
-@post_body_min_len = ApplicationHelper.get_field_length_validator_value(Post, :body, :minimum)
+@post_title_max_len = FieldLengthHelper.get_field_length_validator_value(Post, :title, :maximum)
+@post_title_min_len = FieldLengthHelper.get_field_length_validator_value(Post, :title, :minimum)
+@post_body_max_len = FieldLengthHelper.get_field_length_validator_value(Post, :body, :maximum)
+@post_body_min_len = FieldLengthHelper.get_field_length_validator_value(Post, :body, :minimum)
 
 users = User.all
 users.each do |user|
@@ -50,5 +49,5 @@ end
 # Comments
 posts = Post.all
 posts.each do |post|
-  create_comment_replies(post, users, 5)
+  SeedsHelper.create_comment_replies(post, users, 5)
 end
