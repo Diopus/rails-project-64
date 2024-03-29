@@ -3,14 +3,17 @@
 
 [Collective-blog](https://collective-blog.onrender.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+* Ruby 3.2.2
+* Node.js & npm
+* SQLite for local
 
-* Ruby version
+## Setup
 
-* System dependencies
+```bash
+make setup
+```
 
 * Configuration
 
