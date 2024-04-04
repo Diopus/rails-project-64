@@ -1,3 +1,8 @@
+setup:
+	bin/setup
+	yarn run build
+	yarn run build:css
+
 test:
 	bin/rails test
 
