@@ -1,15 +1,13 @@
 en:
   posts:
-    # BEGIN
+    # CRUD
     create:
+      error: Couldn't create post. Check input data
       success: Post was succesfully created
-
     destroy:
       success: Post was succesfully destroyed
-
     edit:
       title: Title
-
     index:
       comments_count_html:
         zero: No comments
@@ -18,30 +16,32 @@ en:
         other: '%{count} comments'
 
       comments_table_title: Title
+      likes_count: Liked
       new: New post
       page_title: Posts
       title: Collective blog
-
     new:
       title: New post
-
     show:
       body: Body
       comments: Comments
-
     update:
       success: Post was succesfully updated
-    # END
 
+    # content
+    comment:
+      add_comment: reply
     comments:
       destroy:
         success: Comment was succesfully destroyed
-
       edit:
         title: Editing comment
-
       create:
         success: Comment was succesfully created
-
       update:
         success: Comment was succesfully updated
+
+    comment_form:
+      add_comment: reply
+    post:
+      comments_section: Comments
