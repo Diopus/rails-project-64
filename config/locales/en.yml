@@ -1,2 +1,9 @@
 en:
-  app_title: Collective blog
+  layouts:
+    application:
+      title: Collective blog
+    nav:
+      create_post: New post
+      log_in: Log in
+      log_out: Log out
+      sign_in: Sign in

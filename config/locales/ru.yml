@@ -1,2 +1,9 @@
 ru:
-  app_title: Коллективный блог
+  layouts:
+    application:
+      title: Коллективный блог
+    nav:
+      create_post: Новый пост
+      log_in: Войти
+      log_out: Выйти
+      sign_in: Зарегистрироваться
