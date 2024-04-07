@@ -2,11 +2,10 @@
 
 Rails.application.routes.draw do
   root 'posts#index'
-  get 'posts', to: redirect('/')
 
-  resources :posts do
-    resources :comments, module: :posts, shallow: true
-    resources :likes, module: :posts
+  resources :posts, only: [:index, :new, :create, :show] do
+    resources :comments, only: [:create], module: :posts, shallow: true
+    resources :likes, only: [:create, :show], module: :posts
   end
   devise_for :users
 
