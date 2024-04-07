@@ -2,8 +2,7 @@
 
 class Posts::LikesController < Posts::ApplicationController
   def create
-    @like = resource_post.likes.create(post: resource_post, user: current_user)
-    # [TODO] if @like.persisted?
+    @like = resource_post.likes.find_or_create_by(post: resource_post, user: current_user)
 
     redirect_to resource_post
   end
@@ -11,7 +10,6 @@ class Posts::LikesController < Posts::ApplicationController
   def destroy
     like = resource_post.likes.find_by(user: current_user)
     like&.destroy!
-    # [TODO] message?..
 
     redirect_to resource_post
   end

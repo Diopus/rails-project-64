@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :new, :create, :show] do
     resources :comments, only: [:create], module: :posts, shallow: true
-    resources :likes, only: [:create, :show], module: :posts
+    resources :likes, only: [:create, :show, :destroy], module: :posts
   end
   devise_for :users
 
