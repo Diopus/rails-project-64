@@ -25,7 +25,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       post_params = { post: {
         body: @post.body,
         category_id: @category.id,
-        creator_id: @user.id,
         title: @post.title
       } }
       post posts_path, params: post_params

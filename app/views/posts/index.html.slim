@@ -12,7 +12,7 @@ h1 = t('.title')
           .text-right.small.text-muted.mt-auto
             span.me-2
               = t('.likes_count')
-              = ": #{post.likes.count}"
+              = ": #{post.post_likes_count}"
             span.me-2
               = time_ago_in_words(post.created_at)
             span

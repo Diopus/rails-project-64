@@ -12,10 +12,9 @@
           = time_ago_in_words(post.created_at)
       div id='likes-section'
         span.me-2
-          = post.likes.count
-        - like = post.likes.find_by(user: current_user)
-        - if like
-          = link_to post_like_path(post, like), data: { turbo_method: 'delete' }, class: 'text-decoration-none' do
+          = post.post_likes_count
+        - if @post_like_by_current_user
+          = link_to post_like_path(post, @post_like_by_current_user), data: { turbo_method: 'delete' }, class: 'text-decoration-none' do
             span.bi.bi-hand-thumbs-up-fill.text-secondary
         - else
           = link_to post_likes_path(post), data: { turbo_method: 'post' }, class: 'text-decoration-none' do
@@ -27,7 +26,7 @@
       = t('.comments_section')
 
     - if user_signed_in?
-      = render 'comment_form', parent_comment: nil, comment: post.comments.build, url: post_comments_path(@post)
+      = render 'comment_form', parent_comment: nil, comment: post.comments.build, url: post_comments_path(post)
 
     - post.comments.roots.each do |root_comment|
       - if root_comment.persisted?

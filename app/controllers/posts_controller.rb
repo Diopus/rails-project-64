@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_like_by_current_user = @post.likes.find_by(user: current_user) if current_user
     breadcrumb @post.category.name, post_path
   end
 
