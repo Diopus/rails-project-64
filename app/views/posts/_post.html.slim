@@ -26,8 +26,8 @@
       = t('.comments_section')
 
     - if user_signed_in?
-      = render 'comment_form', parent_comment: nil, comment: post.comments.build, url: post_comments_path(post)
+      = render 'comment_form', parent_comment: nil, comment: @new_comment, url: post_comments_path(post)
 
-    - post.comments.roots.each do |root_comment|
+    - @comments.each_key do |root_comment|
       - if root_comment.persisted?
-        = render 'comment', comment: root_comment
+        = render 'comment', comment: root_comment, post:
