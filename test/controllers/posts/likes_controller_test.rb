@@ -19,8 +19,11 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#destroy' do
-    like = post_likes(:two)
-    delete post_like_path(like.post, like)
+    like = post_likes(:one)
+    post = like.post
+    delete post_like_path(post, like)
+
     assert_response :redirect
+    assert_not post.likes.find_by user: @user
   end
 end

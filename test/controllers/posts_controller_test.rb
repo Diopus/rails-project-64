@@ -21,16 +21,18 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    assert_difference('Post.count') do
-      post_params = { post: {
-        body: @post.body,
-        category_id: @category.id,
-        title: @post.title
-      } }
-      post posts_path, params: post_params
-    end
+    title_length = rand(Post.title_length_range)
+    body_length = rand(Post.body_length_range)
+    new_post = {
+      title: Faker::Lorem.paragraph_by_chars(number: title_length),
+      body: Faker::Lorem.paragraph_by_chars(number: body_length),
+      category_id: @category.id
+    }
+    post_params = { post: new_post }
+    post posts_path, params: post_params
 
     assert_redirected_to post_path(Post.last)
+    assert_equal new_post[:body], Post.last.body
   end
 
   test '#show' do

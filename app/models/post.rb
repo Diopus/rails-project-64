@@ -13,4 +13,12 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: MIN_TITLE_LENGTH, maximum: MAX_TITLE_LENGTH }
   validates :body, presence: true, length: { minimum: MIN_BODY_LENGTH, maximum: MAX_BODY_LENGTH }
+
+  def self.title_length_range
+    MIN_TITLE_LENGTH..MAX_TITLE_LENGTH
+  end
+
+  def self.body_length_range
+    MIN_BODY_LENGTH..MAX_BODY_LENGTH
+  end
 end

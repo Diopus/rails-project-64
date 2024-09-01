@@ -4,42 +4,50 @@ require 'application_system_test_case'
 
 class PostCommentsTest < ApplicationSystemTestCase
   setup do
-    @post_comment = post_comments(:one)
+    @post = posts(:two)
+    @root_comment = post_comments(:root_comment)
+    @root_comment_child = post_comments(:root_comment_child)
+    @user = users(:one)
   end
 
-  test 'visiting the index' do
-    visit post_comments_url
-    assert_selector 'h1', text: 'Post comments'
+  test 'visiting a post and adding a comment' do
+    sign_in @user
+    visit post_url(@post)
+
+    assert_selector 'h1', text: @post.title
+
+    fill_in 'post_comment_content', with: @root_comment.content
+    find('input[type="submit"]').click
+
+    assert_text @root_comment.content
+    assert_selector '.card-text', text: @root_comment.content
   end
 
-  test 'should create post comment' do
-    visit post_comments_url
-    click_on 'New post comment'
+  test 'adding a nested comment' do
+    sign_in @user
+    visit post_url(@post)
 
-    fill_in 'Content', with: @post_comment.content
-    fill_in 'Post', with: @post_comment.post_id
-    click_on 'Create Post comment'
+    fill_in 'post_comment_content', with: @root_comment.content
+    find('input[type="submit"]').click
+    assert_text @root_comment.content
 
-    assert_text 'Post comment was successfully created'
-    click_on 'Back'
+    find('.text-decoration-underline.text-lowercase', text: I18n.t('posts.comment.add_comment')).click
+
+    within('.collapse') do
+      fill_in 'post_comment_content', with: @root_comment_child.content
+      find('input[type="submit"]').click
+    end
+
+    assert_text @root_comment_child.content
+    assert_selector '.card-text', text: @root_comment_child.content
   end
 
-  test 'should update Post comment' do
-    visit post_comment_url(@post_comment)
-    click_on 'Edit this post comment', match: :first
+  private
 
-    fill_in 'Content', with: @post_comment.content
-    fill_in 'Post', with: @post_comment.post_id
-    click_on 'Update Post comment'
-
-    assert_text 'Post comment was successfully updated'
-    click_on 'Back'
-  end
-
-  test 'should destroy Post comment' do
-    visit post_comment_url(@post_comment)
-    click_on 'Destroy this post comment', match: :first
-
-    assert_text 'Post comment was successfully destroyed'
+  def sign_in(user)
+    visit new_user_session_path
+    fill_in I18n.t('activerecord.attributes.user.email'), with: user.email
+    fill_in I18n.t('activerecord.attributes.user.password'), with: 'password'
+    find('input[type="submit"]').click
   end
 end

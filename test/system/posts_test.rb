@@ -4,44 +4,39 @@ require 'application_system_test_case'
 
 class PostsTest < ApplicationSystemTestCase
   setup do
-    @post = posts(:one)
+    @category = categories(:one)
+    @post = posts(:two)
+    @user = users(:one)
   end
 
   test 'visiting the index' do
-    visit posts_url
-    assert_selector 'h1', text: 'Posts'
+    sign_in @user
+    visit root_url
+    assert_selector 'h1', text: I18n.t('posts.index.title')
   end
 
   test 'should create post' do
-    visit posts_url
-    click_on 'New post'
+    sign_in @user
+    visit root_url
+    click_on I18n.t('layouts.nav.create_post')
 
-    fill_in 'Body', with: @post.body
-    fill_in 'Creator', with: @post.creator_id
-    fill_in 'Title', with: @post.title
-    click_on 'Create Post'
+    fill_in 'post_title', with: @post.title
+    fill_in 'post_body', with: @post.body
 
-    assert_text 'Post was successfully created'
-    click_on 'Back'
+    select @post.category.name, from: 'post_category_id'
+    find('input[type="submit"]').click
+
+    assert_text I18n.t('posts.create.success')
+    assert_selector 'h1', text: @post.title
   end
 
-  test 'should update Post' do
-    visit post_url(@post)
-    click_on 'Edit this post', match: :first
+  private
 
-    fill_in 'Body', with: @post.body
-    fill_in 'Creator', with: @post.creator_id
-    fill_in 'Title', with: @post.title
-    click_on 'Update Post'
+  def sign_in(user)
+    visit new_user_session_path
+    fill_in I18n.t('activerecord.attributes.user.email'), with: user.email
+    fill_in I18n.t('activerecord.attributes.user.password'), with: 'password'
 
-    assert_text 'Post was successfully updated'
-    click_on 'Back'
-  end
-
-  test 'should destroy Post' do
-    visit post_url(@post)
-    click_on 'Destroy this post', match: :first
-
-    assert_text 'Post was successfully destroyed'
+    find('input[type="submit"]').click
   end
 end

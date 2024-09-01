@@ -9,7 +9,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-require_relative '../app/models/concerns/field_length_helper'
 require_relative 'seeds_helper'
 
 # Categories
@@ -30,17 +29,12 @@ end
 end
 
 # Posts
-@post_title_max_len = FieldLengthHelper.get_field_length_validator_value(Post, :title, :maximum)
-@post_title_min_len = FieldLengthHelper.get_field_length_validator_value(Post, :title, :minimum)
-@post_body_max_len = FieldLengthHelper.get_field_length_validator_value(Post, :body, :maximum)
-@post_body_min_len = FieldLengthHelper.get_field_length_validator_value(Post, :body, :minimum)
-
 users = User.all
 users.each do |user|
   rand(0..2).times do
     user.posts.create!(
-      title: Faker::Lorem.paragraph_by_chars(number: rand(@post_title_min_len..@post_title_max_len)),
-      body: Faker::Lorem.paragraph_by_chars(number: rand(@post_body_min_len..@post_body_max_len)),
+      title: Faker::Lorem.paragraph_by_chars(number: rand(Post.title_length_range)),
+      body: Faker::Lorem.paragraph_by_chars(number: rand(Post.body_length_range)),
       category: Category.all.sample
     )
   end
