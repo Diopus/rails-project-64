@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[index new create show] do
     resources :comments, only: [:create], module: :posts, shallow: true
-    resources :likes, only: %i[create show destroy], module: :posts
+    resources :likes, only: %i[create destroy], module: :posts
   end
   devise_for :users
 

@@ -6,12 +6,12 @@ class PostsController < ApplicationController
   breadcrumb I18n.t('loaf.breadcrumbs.home'), :root_path
 
   def index
-    @posts = Post.preload(:creator).order(id: :desc)
+    @posts = Post.includes(:creator).order(id: :desc)
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.preload(:user).arrange
+    @comments = @post.comments.includes(:user).arrange
     @new_comment = @post.comments.build
     @post_like_by_current_user = @post.likes.find_by(user: current_user) if current_user
 
