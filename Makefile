@@ -4,7 +4,7 @@ setup:
 	yarn run build:css
 
 test:
-	bin/rails test
+	bin/rails test:system test
 
 lint:
 	bundle exec rubocop

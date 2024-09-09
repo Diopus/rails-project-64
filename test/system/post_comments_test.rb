@@ -14,7 +14,7 @@ class PostCommentsTest < ApplicationSystemTestCase
     sign_in @user
     visit post_url(@post)
 
-    assert_selector 'h1', text: @post.title
+    assert_selector 'h1', text: @post.title, wait: 5
 
     fill_in 'post_comment_content', with: @root_comment.content
     find('input[type="submit"]').click
@@ -26,6 +26,8 @@ class PostCommentsTest < ApplicationSystemTestCase
   test 'adding a nested comment' do
     sign_in @user
     visit post_url(@post)
+
+    assert_selector 'h1', text: @post.title, wait: 5
 
     fill_in 'post_comment_content', with: @root_comment.content
     find('input[type="submit"]').click
@@ -40,14 +42,5 @@ class PostCommentsTest < ApplicationSystemTestCase
 
     assert_text @root_comment_child.content
     assert_selector '.card-text', text: @root_comment_child.content
-  end
-
-  private
-
-  def sign_in(user)
-    visit new_user_session_path
-    fill_in I18n.t('activerecord.attributes.user.email'), with: user.email
-    fill_in I18n.t('activerecord.attributes.user.password'), with: 'password'
-    find('input[type="submit"]').click
   end
 end

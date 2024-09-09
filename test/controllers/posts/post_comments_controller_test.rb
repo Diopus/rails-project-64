@@ -29,7 +29,10 @@ class PostCommentsControllerTest < ActionDispatch::IntegrationTest
     post post_comments_path(post), params: comment_params
 
     assert_redirected_to post_path(post)
-    assert_equal new_comment[:content], post.comments.last.content
-    assert_equal @root_comment.id, post.comments.last.parent.id
+
+    comment_created = post.comments.find_by(content: new_comment[:content], user_id: @user.id)
+    assert comment_created
+
+    assert_equal comment_created.parent_id, @root_comment.id
   end
 end

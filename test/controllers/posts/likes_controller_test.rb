@@ -24,6 +24,6 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     delete post_like_path(post, like)
 
     assert_response :redirect
-    assert_not post.likes.find_by user: @user
+    assert_not PostLike.find_by(id: like.id)
   end
 end
